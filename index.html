@@ -14,8 +14,16 @@
             <script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
             <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
         <![endif]-->
+        <style>
+            body {
+                position: relative;
+            }
+            .section {
+                height: 600px;
+            }
+        </style>
     </head>
-    <body>
+    <body data-spy="scroll" data-target="#navbar">
         <nav class="navbar navbar-inverse navbar-fixed-top">
             <div class="container">
                 <div class="navbar-header">
@@ -36,11 +44,11 @@
                 </div><!--/.nav-collapse -->
             </div>
         </nav>
-        <div id="about">
+        <div class="section" id="about">
         </div>
-        <div id="portfolio">
+        <div class="section" id="portfolio">
         </div>
-        <div id="contact">
+        <div class="section" id="contact">
         </div>
 
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
