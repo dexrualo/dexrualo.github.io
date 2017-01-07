@@ -27,6 +27,17 @@
             .social {
                 font-size: 2em;
             }
+            .home-div {
+                padding-top: 70px;
+                display: table;
+            }
+            #quote {
+                font-size: 20px;
+                margin-top: 100px;
+            }
+            .social {
+                padding-top: 50px
+            }
         </style>
     </head>
     <body data-spy="scroll" data-target="#navbar">
@@ -52,8 +63,17 @@
         </nav>
         <main class="container">
         <section id="home">
-            <h2 class="text-primary text-center">Dexter Rualo</h2>
-            <p class="text-center lead">Web Developer</p>
+            <div class="row">
+                <div class="col-md-5 col-md-offset-1 home-div">
+                    <img src="images/profileplaceholder.png" class="image-responsive img-circle center-block" />
+                    <h2 class="text-primary text-center">Dexter Rualo</h2>
+                    <p class="text-center lead">Freelance Web Developer</p>
+                </div>
+                <div class="col-md-5 home-div">
+                    <p id="quote" class="text-center text-primary">"The road to success is always under construction."</p>
+                    <p class="text-right lead">-Lily Tomlin</p>
+                </div>
+            </div>
         </section>
         <section id="portfolio">
             <h3 class="text-primary text-center">PORTFOLIO</h3>
