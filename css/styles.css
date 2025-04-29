@@ -1,0 +1,240 @@
+/* 
+ * Main stylesheet for Dexter Rualo's portfolio website
+ * Author: Dexter Rualo
+ * Version: 1.0
+ * Description: Contains all styles for the portfolio website
+ */
+
+/* CSS Variables for consistent theming */
+:root {
+  --primary-color: #337ab7;
+  --secondary-color: #5cb85c;
+  --dark-color: #333;
+  --light-color: #f8f8f8;
+  --text-color: #333;
+  --text-muted: #777;
+  --link-color: #337ab7;
+  --link-hover-color: #23527c;
+  --font-main: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+  --transition-speed: 0.3s;
+  --spacing-unit: 1rem;
+}
+
+/* Base styles */
+body {
+  position: relative;
+  font-family: var(--font-main);
+  color: var(--text-color);
+  line-height: 1.6;
+  margin: 0;
+  padding: 0;
+}
+
+/* Typography */
+h1, h2, h3, h4, h5, h6 {
+  color: var(--primary-color);
+  margin-top: 1.5rem;
+  margin-bottom: 1rem;
+}
+
+a {
+  color: var(--link-color);
+  text-decoration: none;
+  transition: color var(--transition-speed) ease;
+}
+
+a:hover, a:focus {
+  color: var(--link-hover-color);
+  text-decoration: underline;
+}
+
+/* Layout */
+section {
+  min-height: 600px;
+  padding-top: 50px;
+  padding-bottom: 50px;
+}
+
+.container {
+  width: 100%;
+  max-width: 1170px;
+  margin: 0 auto;
+  padding: 0 15px;
+}
+
+/* Header and Navigation */
+.navbar {
+  background-color: var(--dark-color);
+  border: none;
+  border-radius: 0;
+  margin-bottom: 0;
+}
+
+.navbar-brand {
+  color: #fff !important;
+  font-weight: bold;
+}
+
+.navbar-inverse .navbar-nav > li > a {
+  color: #fff;
+  transition: color var(--transition-speed) ease;
+}
+
+.navbar-inverse .navbar-nav > li > a:hover,
+.navbar-inverse .navbar-nav > li > a:focus {
+  color: var(--secondary-color);
+}
+
+.navbar-inverse .navbar-nav > .active > a,
+.navbar-inverse .navbar-nav > .active > a:hover,
+.navbar-inverse .navbar-nav > .active > a:focus {
+  background-color: rgba(255, 255, 255, 0.1);
+}
+
+/* Home section */
+#home {
+  padding-top: 100px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+}
+
+.profilepic {
+  height: 225px;
+  width: 225px;
+  border-radius: 50%;
+  object-fit: cover;
+  border: 5px solid var(--light-color);
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  transition: transform var(--transition-speed) ease;
+}
+
+.profilepic:hover {
+  transform: scale(1.05);
+}
+
+#quote {
+  font-size: 20px;
+  margin-top: 100px;
+  font-style: italic;
+  color: var(--text-muted);
+}
+
+/* Portfolio section */
+#portfolio {
+  background-color: var(--light-color);
+}
+
+.portfolio-item {
+  margin-bottom: 30px;
+  transition: transform var(--transition-speed) ease;
+}
+
+.portfolio-item:hover {
+  transform: translateY(-5px);
+}
+
+hr {
+  border-color: darkgray;
+  border-style: solid none;
+  border-width: 2px 0;
+  margin: 2rem auto;
+  width: 50%;
+}
+
+/* Contact section */
+.social {
+  font-size: 2em;
+  padding-top: 50px;
+}
+
+.social a {
+  display: inline-block;
+  margin-bottom: 1rem;
+  transition: transform var(--transition-speed) ease;
+}
+
+.social a:hover {
+  transform: translateX(5px);
+}
+
+/* Footer */
+footer {
+  background-color: var(--dark-color);
+  color: #fff;
+  padding: 20px 0;
+  text-align: center;
+}
+
+footer a {
+  color: var(--secondary-color);
+}
+
+footer a:hover {
+  color: #fff;
+}
+
+/* Accessibility */
+.skip-link {
+  position: absolute;
+  top: -40px;
+  left: 0;
+  background: var(--primary-color);
+  color: white;
+  padding: 8px;
+  z-index: 100;
+}
+
+.skip-link:focus {
+  top: 0;
+}
+
+/* Focus states */
+a:focus, button:focus, input:focus, textarea:focus {
+  outline: 2px solid var(--primary-color);
+  outline-offset: 2px;
+}
+
+/* Responsive design */
+@media (max-width: 768px) {
+  section {
+    min-height: auto;
+    padding: 30px 0;
+  }
+  
+  #home {
+    padding-top: 80px;
+  }
+  
+  .profilepic {
+    height: 180px;
+    width: 180px;
+  }
+  
+  .social {
+    font-size: 1.5em;
+    padding-top: 30px;
+  }
+}
+
+/* Animation for page elements */
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(20px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+.fade-in {
+  animation: fadeIn 0.8s ease forwards;
+}
+
+/* Lazy loading styles */
+.lazy-load {
+  opacity: 0;
+  transition: opacity var(--transition-speed) ease;
+}
+
+.lazy-load.loaded {
+  opacity: 1;
+}
