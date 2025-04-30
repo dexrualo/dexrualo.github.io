@@ -58,6 +58,6 @@ This project is available under the terms specified in the [LICENSE](LICENSE) fi
 
 ## Contact
 
-Dexter Rualo - [Twitter](https://twitter.com/d3xru8) - [GitHub](https://github.com/d3xru8) - [Facebook](https://facebook.com/d3xru8)
+Dexter Rualo - [GitHub](https://github.com/d3xru8)
 
 Project Link: [https://github.com/dexrualo/dexrualo.github.io](https://github.com/dexrualo/dexrualo.github.io)
