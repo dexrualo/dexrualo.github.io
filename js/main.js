@@ -12,6 +12,7 @@ document.addEventListener('DOMContentLoaded', () => {
   initSmoothScrolling();
   initLazyLoading();
   initAnimations();
+  initBackToTop();
   
   // Add event listeners
   window.addEventListener('resize', initSectionHeight);
@@ -35,11 +36,32 @@ function initSectionHeight() {
 }
 
 /**
+ * Helper to update active navigation visual state and accessibility attributes (aria-current)
+ */
+function updateActiveNavigation(activeLink) {
+  if (!activeLink) return;
+
+  document.querySelectorAll('.navbar-nav li').forEach(item => {
+    item.classList.remove('active');
+    const a = item.querySelector('a');
+    if (a) {
+      a.removeAttribute('aria-current');
+    }
+  });
+
+  const parentLi = activeLink.closest('li');
+  if (parentLi) {
+    parentLi.classList.add('active');
+  }
+  activeLink.setAttribute('aria-current', 'page');
+}
+
+/**
  * Implements smooth scrolling for navigation links
  */
 function initSmoothScrolling() {
   try {
-    const navLinks = document.querySelectorAll('a[href^="#"]');
+    const navLinks = document.querySelectorAll('.navbar-nav a[href^="#"]');
     
     navLinks.forEach(link => {
       link.addEventListener('click', function(e) {
@@ -56,11 +78,15 @@ function initSmoothScrolling() {
             behavior: 'smooth'
           });
           
-          // Update active state in navigation
-          document.querySelectorAll('.navbar-nav li').forEach(item => {
-            item.classList.remove('active');
-          });
-          this.closest('li').classList.add('active');
+          // Update active state and ARIA attribute in navigation
+          updateActiveNavigation(this);
+
+          // Auto-collapse mobile menu if open
+          const navbarCollapse = document.querySelector('#navbar');
+          const toggleButton = document.querySelector('.navbar-toggle');
+          if (navbarCollapse && navbarCollapse.classList.contains('in') && toggleButton) {
+            toggleButton.click();
+          }
         }
       });
     });
@@ -134,6 +160,35 @@ function initAnimations() {
 }
 
 /**
+ * Implements the Back to Top button behavior
+ */
+function initBackToTop() {
+  try {
+    const backToTopBtn = document.getElementById('back-to-top');
+    if (!backToTopBtn) return;
+
+    // Toggle button visibility on scroll
+    window.addEventListener('scroll', () => {
+      if (window.scrollY > 300) {
+        backToTopBtn.classList.add('show');
+      } else {
+        backToTopBtn.classList.remove('show');
+      }
+    });
+
+    // Scroll smoothly to top on click
+    backToTopBtn.addEventListener('click', () => {
+      window.scrollTo({
+        top: 0,
+        behavior: 'smooth'
+      });
+    });
+  } catch (error) {
+    console.error('Error initializing Back to Top button:', error);
+  }
+}
+
+/**
  * Updates active navigation based on scroll position
  */
 window.addEventListener('scroll', () => {
@@ -152,12 +207,11 @@ window.addEventListener('scroll', () => {
         // Get the ID of the current section
         const id = section.getAttribute('id');
         
-        // Update active state in navigation
-        document.querySelectorAll('.navbar-nav li').forEach(item => {
-          item.classList.remove('active');
-        });
-        
-        document.querySelector(`.navbar-nav li a[href="#${id}"]`).closest('li').classList.add('active');
+        // Update active state and ARIA attribute in navigation
+        const targetLink = document.querySelector(`.navbar-nav li a[href="#${id}"]`);
+        if (targetLink) {
+          updateActiveNavigation(targetLink);
+        }
       }
     });
   } catch (error) {
